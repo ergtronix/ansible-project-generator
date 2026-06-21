@@ -1,0 +1,406 @@
+/* ===================================================
+   Ansible Project Generator — style.css
+   テーマ: インフラ管理ツール風 / シンプル / 清潔感
+   =================================================== */
+
+/* ---------- リセット & ベース ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg: #f0f2f5;
+  --color-surface: #ffffff;
+  --color-border: #d0d5dd;
+  --color-header-bg: #1a2b3c;
+  --color-header-text: #e8edf2;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-success: #16a34a;
+  --color-success-hover: #15803d;
+  --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+  --color-secondary: #4b5563;
+  --color-secondary-hover: #374151;
+  --color-text: #1e293b;
+  --color-text-muted: #64748b;
+  --color-code-bg: #1e2a38;
+  --color-code-text: #a8d8a8;
+  --color-required: #dc2626;
+  --color-error-bg: #fef2f2;
+  --color-error-border: #fca5a5;
+  --color-error-text: #991b1b;
+  --color-success-bg: #f0fdf4;
+  --color-success-border: #86efac;
+  --color-success-text: #166534;
+  --radius: 6px;
+  --shadow: 0 1px 4px rgba(0,0,0,0.08);
+  --max-width: 1100px;
+  --font-mono: 'Consolas', 'Fira Mono', 'Courier New', monospace;
+}
+
+body {
+  font-family: 'Segoe UI', 'Hiragino Sans', 'Meiryo', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  font-size: 15px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---------- ヘッダー ---------- */
+header {
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
+  padding: 24px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #e2e8f0;
+}
+
+header h1::before {
+  content: "⚙ ";
+  opacity: 0.8;
+}
+
+.header-desc {
+  margin-top: 6px;
+  font-size: 0.875rem;
+  color: #94a3b8;
+  max-width: 600px;
+}
+
+/* ---------- メイン ---------- */
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 28px 24px 40px;
+  flex: 1;
+  width: 100%;
+}
+
+/* ---------- カード ---------- */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- フォーム ---------- */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.required {
+  color: var(--color-required);
+}
+
+.form-group input,
+.form-group select {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  color: var(--color-text);
+  background: #fff;
+  transition: border-color 0.15s;
+  width: 100%;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ---------- ボタン ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary   { background: var(--color-primary);   color: #fff; }
+.btn-primary:hover  { background: var(--color-primary-hover); }
+
+.btn-success   { background: var(--color-success);   color: #fff; }
+.btn-success:hover  { background: var(--color-success-hover); }
+
+.btn-danger    { background: var(--color-danger);    color: #fff; }
+.btn-danger:hover   { background: var(--color-danger-hover); }
+
+.btn-secondary { background: var(--color-secondary); color: #fff; }
+.btn-secondary:hover { background: var(--color-secondary-hover); }
+
+.btn-sm {
+  padding: 5px 12px;
+  font-size: 0.8rem;
+}
+
+/* ---------- アクションバー ---------- */
+.action-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+/* ---------- テーブル ---------- */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+#server-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+#server-table thead th {
+  background: #f1f5f9;
+  color: var(--color-text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 2px solid var(--color-border);
+  white-space: nowrap;
+}
+
+#server-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+  transition: background 0.12s;
+}
+
+#server-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+#server-table tbody td {
+  padding: 10px 14px;
+  color: var(--color-text);
+}
+
+.empty-cell {
+  text-align: center;
+  color: var(--color-text-muted);
+  font-style: italic;
+  padding: 20px !important;
+}
+
+/* サーバー種別バッジ */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.badge-web     { background: #dbeafe; color: #1d4ed8; }
+.badge-app     { background: #d1fae5; color: #065f46; }
+.badge-db      { background: #ede9fe; color: #5b21b6; }
+.badge-monitor { background: #fef3c7; color: #92400e; }
+
+/* ---------- メッセージ ---------- */
+.message {
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.message.error {
+  background: var(--color-error-bg);
+  border: 1px solid var(--color-error-border);
+  color: var(--color-error-text);
+}
+
+.message.success {
+  background: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  color: var(--color-success-text);
+}
+
+.copy-msg {
+  font-size: 0.8rem;
+  color: var(--color-success-text);
+  min-height: 1.2em;
+  margin-bottom: 6px;
+}
+
+/* ---------- 生成結果 ---------- */
+.output-card {
+  padding: 20px 24px;
+}
+
+.output-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.output-header h3 {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--color-primary);
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 3px 12px;
+  border-radius: 4px;
+}
+
+.code-block {
+  background: var(--color-code-bg);
+  color: var(--color-code-text);
+  font-family: var(--font-mono);
+  font-size: 0.83rem;
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  white-space: pre;
+  line-height: 1.65;
+  min-height: 80px;
+  border: 1px solid #2d3748;
+}
+
+.btn-copy {
+  background: #374151;
+  color: #e2e8f0;
+  border: 1px solid #4b5563;
+}
+.btn-copy:hover {
+  background: #4b5563;
+}
+
+/* ---------- 非表示 ---------- */
+.hidden {
+  display: none;
+}
+
+/* ---------- フッター ---------- */
+footer {
+  background: var(--color-header-bg);
+  color: #64748b;
+  text-align: center;
+  padding: 16px 24px;
+  font-size: 0.8rem;
+}
+
+/* ---------- レスポンシブ ---------- */
+@media (max-width: 640px) {
+  header h1 {
+    font-size: 1.2rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .action-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .action-bar .btn {
+    justify-content: center;
+  }
+
+  #server-table thead {
+    display: none;
+  }
+
+  #server-table tbody tr {
+    display: block;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    padding: 10px;
+  }
+
+  #server-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 8px;
+    font-size: 0.85rem;
+  }
+
+  #server-table tbody td::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+}

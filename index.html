@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ansible Project Generator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header>
+    <div class="header-inner">
+      <h1>Ansible Project Generator</h1>
+      <p class="header-desc">サーバー情報を入力して Ansible 構成ファイル一式（inventory / playbook / group_vars / README）を自動生成するツールです。</p>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 入力フォーム -->
+    <section class="card" id="form-section">
+      <h2 class="section-title">サーバー情報を入力</h2>
+
+      <div id="error-message" class="message error" hidden></div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="server-type">サーバー種別 <span class="required">*</span></label>
+          <select id="server-type">
+            <option value="">-- 選択してください --</option>
+            <option value="web">Webサーバー</option>
+            <option value="app">APサーバー</option>
+            <option value="db">DBサーバー</option>
+            <option value="monitor">監視サーバー</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="group-name">グループ名 <span class="required">*</span></label>
+          <input type="text" id="group-name" placeholder="例: web" maxlength="64">
+        </div>
+
+        <div class="form-group">
+          <label for="host-name">ホスト名 <span class="required">*</span></label>
+          <input type="text" id="host-name" placeholder="例: web01" maxlength="64">
+        </div>
+
+        <div class="form-group">
+          <label for="ip-address">IPアドレス <span class="required">*</span></label>
+          <input type="text" id="ip-address" placeholder="例: 192.168.56.10" maxlength="64">
+        </div>
+
+        <div class="form-group">
+          <label for="ssh-user">SSHユーザー <span class="required">*</span></label>
+          <input type="text" id="ssh-user" placeholder="例: ubuntu" maxlength="64">
+        </div>
+
+        <div class="form-group">
+          <label for="middleware">ミドルウェア <span class="required">*</span></label>
+          <select id="middleware">
+            <option value="">-- サーバー種別を選択してください --</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button id="btn-add" class="btn btn-primary">サーバー追加</button>
+      </div>
+    </section>
+
+    <!-- サーバー一覧 -->
+    <section class="card" id="list-section">
+      <h2 class="section-title">登録済みサーバー一覧</h2>
+      <div class="table-wrapper">
+        <table id="server-table">
+          <thead>
+            <tr>
+              <th>サーバー種別</th>
+              <th>グループ名</th>
+              <th>ホスト名</th>
+              <th>IPアドレス</th>
+              <th>SSHユーザー</th>
+              <th>ミドルウェア</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody id="server-tbody">
+            <tr id="empty-row">
+              <td colspan="7" class="empty-cell">サーバーが登録されていません</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 操作ボタン -->
+    <section class="action-bar">
+      <button id="btn-generate" class="btn btn-success">Ansibleファイル生成</button>
+      <button id="btn-copy-all" class="btn btn-secondary">すべてコピー</button>
+      <button id="btn-clear" class="btn btn-danger">クリア</button>
+    </section>
+
+    <div id="copy-all-message" class="message" hidden></div>
+
+    <!-- 生成結果 -->
+    <section id="output-section" class="hidden">
+
+      <div class="card output-card">
+        <div class="output-header">
+          <h3>inventory.ini</h3>
+          <button class="btn btn-sm btn-copy" data-target="output-inventory">コピー</button>
+        </div>
+        <div class="copy-msg" id="msg-inventory"></div>
+        <pre id="output-inventory" class="code-block"></pre>
+      </div>
+
+      <div class="card output-card">
+        <div class="output-header">
+          <h3>playbook.yml</h3>
+          <button class="btn btn-sm btn-copy" data-target="output-playbook">コピー</button>
+        </div>
+        <div class="copy-msg" id="msg-playbook"></div>
+        <pre id="output-playbook" class="code-block"></pre>
+      </div>
+
+      <div class="card output-card">
+        <div class="output-header">
+          <h3>group_vars/all.yml</h3>
+          <button class="btn btn-sm btn-copy" data-target="output-groupvars">コピー</button>
+        </div>
+        <div class="copy-msg" id="msg-groupvars"></div>
+        <pre id="output-groupvars" class="code-block"></pre>
+      </div>
+
+      <div class="card output-card">
+        <div class="output-header">
+          <h3>README_ansible.md</h3>
+          <button class="btn btn-sm btn-copy" data-target="output-readme">コピー</button>
+        </div>
+        <div class="copy-msg" id="msg-readme"></div>
+        <pre id="output-readme" class="code-block"></pre>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- フッター -->
+  <footer>
+    <p>Ansible Project Generator — 学習課題用 Ansible 構成ファイル生成ツール</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
