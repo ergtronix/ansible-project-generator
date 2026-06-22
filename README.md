@@ -2,6 +2,10 @@
 
 **デモ URL**: https://ergtronix.github.io/ansible-project-generator/
 
+## 動作画面
+
+![Ansible Project Generator](docs/screenshot.png)
+
 ## 概要
 
 このアプリは、Web画面でサーバー情報を入力すると、Ansibleで利用できる構成ファイル一式を自動生成するWebアプリです。
