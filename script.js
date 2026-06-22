@@ -57,8 +57,8 @@ document.getElementById('btn-clear').addEventListener('click', clearAll);
 
 document.querySelectorAll('.btn-copy').forEach(btn => {
   btn.addEventListener('click', () => {
-    const targetId  = btn.dataset.target;
-    const msgId     = 'msg-' + targetId.replace('output-', '');
+    const targetId = btn.dataset.target;
+    const msgId    = 'msg-' + targetId.replace('output-', '');
     copyToClipboard(
       document.getElementById(targetId).textContent,
       document.getElementById(msgId),
@@ -66,6 +66,16 @@ document.querySelectorAll('.btn-copy').forEach(btn => {
     );
   });
 });
+
+document.querySelectorAll('.btn-dl').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const content  = document.getElementById(btn.dataset.target).textContent;
+    const filename = btn.dataset.filename;
+    downloadFile(filename, content);
+  });
+});
+
+document.getElementById('btn-zip-download').addEventListener('click', downloadZip);
 
 // 初回レンダリング
 renderTable();
@@ -448,6 +458,52 @@ function displayCopySuccess(msgEl, text) {
     msgEl.textContent = text;
     setTimeout(() => { msgEl.textContent = ''; }, 2500);
   }
+}
+
+// -------------------------------------------------------
+// ダウンロード機能
+// -------------------------------------------------------
+function downloadFile(filename, content) {
+  const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = filename.includes('/') ? filename.split('/').pop() : filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function downloadZip() {
+  if (elOutputSec.classList.contains('hidden')) {
+    showMessage(elCopyAllMsg, 'error', '先に「Ansibleファイル生成」ボタンを押してください。');
+    return;
+  }
+
+  const files = [
+    { path: 'inventory.ini',         id: 'output-inventory' },
+    { path: 'playbook.yml',          id: 'output-playbook'  },
+    { path: 'group_vars/all.yml',    id: 'output-groupvars' },
+    { path: 'README_ansible.md',     id: 'output-readme'    },
+  ];
+
+  const zip = new JSZip();
+  files.forEach(f => {
+    zip.file(f.path, document.getElementById(f.id).textContent);
+  });
+
+  zip.generateAsync({ type: 'blob' }).then(blob => {
+    const url = URL.createObjectURL(blob);
+    const a   = document.createElement('a');
+    a.href    = url;
+    a.download = 'ansible-project.zip';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showMessage(elCopyAllMsg, 'success', 'ansible-project.zip をダウンロードしました。');
+  });
 }
 
 // -------------------------------------------------------

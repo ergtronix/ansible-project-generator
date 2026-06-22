@@ -344,6 +344,31 @@ main {
   background: #4b5563;
 }
 
+.btn-dl {
+  background: #1e3a5f;
+  color: #93c5fd;
+  border: 1px solid #2563eb;
+}
+.btn-dl:hover {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+.btn-download {
+  background: #0e4429;
+  color: #4ade80;
+  border: 1px solid #16a34a;
+}
+.btn-download:hover {
+  background: #16a34a;
+  color: #fff;
+}
+
+.output-actions {
+  display: flex;
+  gap: 8px;
+}
+
 /* ---------- 非表示 ---------- */
 .hidden {
   display: none;

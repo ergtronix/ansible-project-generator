@@ -98,6 +98,7 @@
     <section class="action-bar">
       <button id="btn-generate" class="btn btn-success">Ansibleファイル生成</button>
       <button id="btn-copy-all" class="btn btn-secondary">すべてコピー</button>
+      <button id="btn-zip-download" class="btn btn-download">ZIPダウンロード</button>
       <button id="btn-clear" class="btn btn-danger">クリア</button>
     </section>
 
@@ -109,7 +110,10 @@
       <div class="card output-card">
         <div class="output-header">
           <h3>inventory.ini</h3>
-          <button class="btn btn-sm btn-copy" data-target="output-inventory">コピー</button>
+          <div class="output-actions">
+            <button class="btn btn-sm btn-copy" data-target="output-inventory">コピー</button>
+            <button class="btn btn-sm btn-dl" data-target="output-inventory" data-filename="inventory.ini">ダウンロード</button>
+          </div>
         </div>
         <div class="copy-msg" id="msg-inventory"></div>
         <pre id="output-inventory" class="code-block"></pre>
@@ -118,7 +122,10 @@
       <div class="card output-card">
         <div class="output-header">
           <h3>playbook.yml</h3>
-          <button class="btn btn-sm btn-copy" data-target="output-playbook">コピー</button>
+          <div class="output-actions">
+            <button class="btn btn-sm btn-copy" data-target="output-playbook">コピー</button>
+            <button class="btn btn-sm btn-dl" data-target="output-playbook" data-filename="playbook.yml">ダウンロード</button>
+          </div>
         </div>
         <div class="copy-msg" id="msg-playbook"></div>
         <pre id="output-playbook" class="code-block"></pre>
@@ -127,7 +134,10 @@
       <div class="card output-card">
         <div class="output-header">
           <h3>group_vars/all.yml</h3>
-          <button class="btn btn-sm btn-copy" data-target="output-groupvars">コピー</button>
+          <div class="output-actions">
+            <button class="btn btn-sm btn-copy" data-target="output-groupvars">コピー</button>
+            <button class="btn btn-sm btn-dl" data-target="output-groupvars" data-filename="group_vars/all.yml">ダウンロード</button>
+          </div>
         </div>
         <div class="copy-msg" id="msg-groupvars"></div>
         <pre id="output-groupvars" class="code-block"></pre>
@@ -136,7 +146,10 @@
       <div class="card output-card">
         <div class="output-header">
           <h3>README_ansible.md</h3>
-          <button class="btn btn-sm btn-copy" data-target="output-readme">コピー</button>
+          <div class="output-actions">
+            <button class="btn btn-sm btn-copy" data-target="output-readme">コピー</button>
+            <button class="btn btn-sm btn-dl" data-target="output-readme" data-filename="README_ansible.md">ダウンロード</button>
+          </div>
         </div>
         <div class="copy-msg" id="msg-readme"></div>
         <pre id="output-readme" class="code-block"></pre>
@@ -151,6 +164,7 @@
     <p>Ansible Project Generator — 学習課題用 Ansible 構成ファイル生成ツール</p>
   </footer>
 
+  <script src="jszip.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
